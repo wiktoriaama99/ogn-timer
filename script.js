@@ -83,6 +83,43 @@ locations.forEach(location => {
 
             const s = total % 60;
 
+
+
+//d
+            
+// Usuń stare kolory
+cardElement.classList.remove("green");
+cardElement.classList.remove("orange");
+cardElement.classList.remove("red");
+
+// Zmień kolor w zależności od czasu
+if (total <= 60) {
+
+    cardElement.classList.add("red");
+
+}
+else if (total <= 300) {
+
+    cardElement.classList.add("orange");
+
+}
+else {
+
+    cardElement.classList.add("green");
+
+}
+
+
+//d
+
+            
+
+
+
+
+
+
+            
             timerText.textContent =
                 String(m).padStart(2, "0") +
                 ":" +
@@ -110,10 +147,31 @@ locations.forEach(location => {
         resetBtn.onclick = () => {
 
             clearInterval(timers[key].interval);
+//d
+            cardElement.classList.remove("green");
+cardElement.classList.remove("orange");
+cardElement.classList.remove("red");
+cardElement.classList.remove("finished");
+//d
 
+
+            
             timers[key].interval = null;
 
             timerText.textContent = "00:00";
+
+
+
+
+            //d
+cardElement.classList.remove("green");
+cardElement.classList.remove("orange");
+cardElement.classList.remove("red");
+cardElement.classList.remove("finished");
+//d
+            
+
+            
 
             timers[key].card.classList.remove("finished");
 
