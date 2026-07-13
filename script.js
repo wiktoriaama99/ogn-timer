@@ -1,4 +1,4 @@
-aconst places=[
+const places=[
 "Teleporter",
 "Mały Wulkan",
 "Duży Wulkan",
