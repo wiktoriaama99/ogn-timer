@@ -8,7 +8,9 @@ const locations = [
 const app = document.getElementById("app");
 const sectionTemplate = document.getElementById("sectionTemplate");
 const channelTemplate = document.getElementById("channelTemplate");
-
+const nextLocation = document.getElementById("nextLocation");
+const nextChannel = document.getElementById("nextChannel");
+const nextTime = document.getElementById("nextTime");
 let defaultMinutes = Number(localStorage.getItem("defaultMinutes")) || 30;
 
 const input = document.getElementById("defaultMinutes");
@@ -73,6 +75,7 @@ locations.forEach(location => {
                 cardElement.classList.add("finished");
 
                 localStorage.removeItem(key);
+updateNextMetin();
 
                 return;
             }
@@ -125,6 +128,11 @@ else {
                 ":" +
                 String(s).padStart(2, "0");
 
+
+updateNextMetin();
+
+
+            
         }
 
         startBtn.onclick = () => {
@@ -141,7 +149,7 @@ else {
             update();
 
             timers[key].interval = setInterval(update, 1000);
-
+updateNextMetin();
         };
 
         resetBtn.onclick = () => {
@@ -163,20 +171,13 @@ cardElement.classList.remove("finished");
 
 
 
-            //d
-cardElement.classList.remove("green");
-cardElement.classList.remove("orange");
-cardElement.classList.remove("red");
-cardElement.classList.remove("finished");
-//d
-            
 
             
 
             timers[key].card.classList.remove("finished");
 
             localStorage.removeItem(key);
-
+updateNextMetin();
         };
 
         const saved = localStorage.getItem(key);
@@ -188,6 +189,7 @@ cardElement.classList.remove("finished");
             update();
 
             timers[key].interval = setInterval(update, 1000);
+    updateNextMetin();
 
         }
 
@@ -200,7 +202,57 @@ cardElement.classList.remove("finished");
 });
 
 
+function updateNextMetin(){
 
+    let best = null;
+
+    for(const key in timers){
+
+        if(timers[key].interval === null)
+            continue;
+
+        const left = timers[key].end - Date.now();
+
+        if(left <= 0)
+            continue;
+
+        if(best === null || left < best.left){
+
+            const split = key.split("-CH");
+
+            best = {
+                location: split[0],
+                channel: "CH" + split[1],
+                left: left
+            };
+
+        }
+
+    }
+
+    if(best === null){
+
+        nextLocation.textContent = "Brak aktywnych timerów";
+        nextChannel.textContent = "";
+        nextTime.textContent = "";
+
+        return;
+
+    }
+
+    const total = Math.floor(best.left / 1000);
+
+    const m = Math.floor(total / 60);
+    const s = total % 60;
+
+    nextLocation.textContent = "📍 " + best.location;
+    nextChannel.textContent = "📺 " + best.channel;
+    nextTime.textContent = "⏳ Za " +
+        String(m).padStart(2,"0") +
+        ":" +
+        String(s).padStart(2,"0");
+
+}
 // =================== MAPA ===================
 
 const openMapBtn = document.getElementById("openMap");
