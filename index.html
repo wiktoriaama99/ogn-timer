@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ognista ziemia - timer</title>
-<link rel="icon" type="image/png" href="alliesicon.png">
+
+    <link rel="icon" type="image/png" href="alliesicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,13 +32,15 @@
             ZAPISZ
         </button>
 
+        <button id="openMap">
+            🗺️ MAPA
+        </button>
+
     </div>
 
 </div>
 
-<main id="app">
-
-</main>
+<main id="app"></main>
 
 <template id="sectionTemplate">
 
@@ -45,9 +48,7 @@
 
         <h2 class="section-title"></h2>
 
-        <div class="channels">
-
-        </div>
+        <div class="channels"></div>
 
     </section>
 
@@ -84,6 +85,20 @@
     </div>
 
 </template>
+
+<div id="mapModal" class="modal">
+
+    <div class="modal-content">
+
+        <button id="closeMap" class="close-map">
+            ✖
+        </button>
+
+        <img src="mapa70.png" alt="Mapa" id="mapImage">
+
+    </div>
+
+</div>
 
 <script src="script.js"></script>
 
