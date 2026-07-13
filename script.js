@@ -140,3 +140,25 @@ locations.forEach(location => {
     app.appendChild(section);
 
 });
+
+
+
+// =================== MAPA ===================
+
+const openMapBtn = document.getElementById("openMap");
+const mapModal = document.getElementById("mapModal");
+const closeMapBtn = document.getElementById("closeMap");
+
+openMapBtn.addEventListener("click", () => {
+    mapModal.style.display = "flex";
+});
+
+closeMapBtn.addEventListener("click", () => {
+    mapModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === mapModal) {
+        mapModal.style.display = "none";
+    }
+});
