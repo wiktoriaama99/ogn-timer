@@ -9,12 +9,81 @@
 </head>
 <body>
 
-<header>
-    <h1>🔥 ognista ziemia </h1>
+<header class="header">
+    <h1>🔥 OGN Timer</h1>
     <p>Metki Mordu</p>
 </header>
 
-<main id="timers"></main>
+<div class="global-settings">
+
+    <label>Domyślny czas (minuty)</label>
+
+    <div class="global-input">
+
+        <input
+            type="number"
+            id="defaultMinutes"
+            value="30"
+            min="1"
+        >
+
+        <button id="saveDefault">
+            ZAPISZ
+        </button>
+
+    </div>
+
+</div>
+
+<main id="app">
+
+</main>
+
+<template id="sectionTemplate">
+
+    <section class="section">
+
+        <h2 class="section-title"></h2>
+
+        <div class="channels">
+
+        </div>
+
+    </section>
+
+</template>
+
+<template id="channelTemplate">
+
+    <div class="channel-card">
+
+        <div class="left">
+
+            <div class="channel-name">
+                CH1
+            </div>
+
+            <div class="timer">
+                00:00
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <button class="start">
+                ▶ START
+            </button>
+
+            <button class="reset">
+                🔄 RESET
+            </button>
+
+        </div>
+
+    </div>
+
+</template>
 
 <script src="script.js"></script>
 
